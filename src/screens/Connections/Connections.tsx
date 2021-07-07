@@ -22,7 +22,11 @@ import EmptyState from './components/EmptyState/EmptyState';
 import Switch from './components/Switch/Switch';
 import {flights} from '../../data';
 
-const Connections = () => {
+type Props = {
+  navigation: any;
+};
+
+const Connections = ({navigation}: Props) => {
   const [fromText, setFromText] = useState('');
   const [inputExpanded, setInputExpanded] = useState(false);
   const [originAirport, setOriginAirport] = useState<{
@@ -70,6 +74,16 @@ const Connections = () => {
       setSearchingFlights(false);
     }, 2000);
   }, []);
+
+  const onPress = () => {
+    if (modalRef && modalRef.current && modalRef.current.close) {
+      modalRef.current.close();
+    }
+
+    navigation.navigate('BookingScreen', {
+      modalData: modalData,
+    });
+  };
 
   const renderFlight = ({
     item: {destination, destinationIata, time, id},
@@ -162,7 +176,7 @@ const Connections = () => {
           <Switch toggled={isMapView} setToggled={setIsMapView} />
         </View>
       )}
-      <FlightInfoModal modalRef={modalRef} {...modalData} />
+      <FlightInfoModal modalRef={modalRef} {...modalData} onPress={onPress} />
     </>
   );
 };
