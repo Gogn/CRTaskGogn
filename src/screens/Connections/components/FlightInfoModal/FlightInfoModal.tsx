@@ -15,6 +15,7 @@ interface FlightInfoModalProps {
   origin: string;
   originIata: string;
   modalRef: Ref<RBSheet>;
+  onPress(): void;
 }
 
 const FlightInfoModal = ({
@@ -24,6 +25,7 @@ const FlightInfoModal = ({
   origin,
   originIata,
   time,
+  onPress,
 }: FlightInfoModalProps) => {
   return (
     <RBSheet
@@ -56,6 +58,11 @@ const FlightInfoModal = ({
         <TouchableOpacity style={styles.guideButton}>
           <Text style={styles.guideButtonText}>
             {t.flightInfoModal.buttonFirst}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.detailsButton} onPress={onPress}>
+          <Text style={styles.detailsButtonText}>
+            {t.flightInfoModal.buttonSecond}
           </Text>
         </TouchableOpacity>
       </View>

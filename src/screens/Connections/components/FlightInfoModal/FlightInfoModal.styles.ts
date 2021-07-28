@@ -78,4 +78,12 @@ export default StyleSheet.create({
     ...textStyles.modalButtonText,
     color: colors.blue,
   },
+  detailsButton: {
+    ...buttonCommonStyles,
+    backgroundColor: colors.blue,
+  },
+  detailsButtonText: {
+    ...textStyles.modalButtonText,
+    color: colors.white,
+  },
 });
